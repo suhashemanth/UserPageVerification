@@ -1,4 +1,4 @@
-package com.suhas.UserPageVerification.user;
+package com.suhas.UserPageVerification.user.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
