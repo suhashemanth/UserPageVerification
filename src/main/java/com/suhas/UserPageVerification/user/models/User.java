@@ -3,6 +3,7 @@ package com.suhas.UserPageVerification.user.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -16,7 +17,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "user",uniqueConstraints = {@UniqueConstraint(columnNames = "username"),@UniqueConstraint(columnNames = "email")})
+@Table(name = "user")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,11 +29,11 @@ public class User {
     private Long userId;
     @NotBlank
     @Size(max = 20)
-    @Column(name = "username")
+    @Column(name = "username",unique = true)
     private String userName;
-    @NotBlank
+    @Email
     @Size(max = 50)
-    @Column(name = "email")
+    @Column(name = "email",unique = true)
     private String email;
     @Size(max=120)
     @Column(name = "password")
@@ -43,6 +44,7 @@ public class User {
     private boolean credentialsNotExpired=true;
     private LocalDate credentialsExpiryDate;
     private LocalDate accountExpiryDate;
+    private boolean enabled = true;
     private boolean isTwoFactorEnabled=false;
     private String signUpMethod;
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE})

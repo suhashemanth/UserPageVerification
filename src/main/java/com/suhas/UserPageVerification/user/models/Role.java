@@ -4,6 +4,7 @@ package com.suhas.UserPageVerification.user.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.util.HashSet;
@@ -12,6 +13,7 @@ import java.util.Set;
 @Entity
 @Table(name = "role")
 @Data
+@NoArgsConstructor
 public class Role {
 
     @Id
