@@ -22,7 +22,7 @@ public class Role {
     private Long id;
     @Enumerated(EnumType.STRING)
     @ToString.Exclude
-    @Column(name="role_name")
+    @Column(name="role_name",unique = true)
     private UserRole role;
     @OneToMany(mappedBy = "role",fetch = FetchType.LAZY,cascade = {CascadeType.MERGE})
     @JsonBackReference

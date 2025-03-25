@@ -9,7 +9,6 @@ import com.suhas.UserPageVerification.user.security.dto.UserDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -31,11 +30,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public void UpdateUserRole(Long id, String roleName) {
         User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
-        UserRole role=UserRole.valueOf(roleName);
-        Role roleNames = roleRepository.findByRole(role).orElseThrow(() -> new RuntimeException("role not found"));
-        user.setRole(new Role(roleNames.getRole()));
+        UserRole appRole = UserRole.valueOf(roleName);
+        Role role = roleRepository.findByRole(appRole)
+                .orElseThrow(() -> new RuntimeException("Role not found"));
+        user.setRole(role);
         userRepository.save(user);
     }
+
 
     @Override
     public UserDTO getUserById(Long id) {
