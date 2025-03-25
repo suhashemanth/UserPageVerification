@@ -57,6 +57,7 @@ public class User {
     private LocalDateTime createdDate;
     @UpdateTimestamp
     private LocalDateTime updatedDate;
+    private String twoFactorSecret;
 
     public User(String userName, String email, String password) {
         this.userName = userName;
