@@ -5,6 +5,7 @@ import com.suhas.UserPageVerification.user.security.dto.UserDTO;
 import com.suhas.UserPageVerification.user.security.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +21,7 @@ public class AdminController {
     {
         this.userService=userService;
     }
-    @PreAuthorize("hasRole('ADMIN')")
+    @Secured("ADMIN")
     @GetMapping("/getallusers")
     public ResponseEntity<List<User>> getAllUsers()
     {
@@ -28,7 +29,7 @@ public class AdminController {
         return new ResponseEntity<>(allUsers, HttpStatus.OK);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @Secured("ADMIN")
     @PutMapping("/update-role")
     public ResponseEntity<String> updateUser(@RequestParam Long id,@RequestParam String roleName)
     {
@@ -36,7 +37,7 @@ public class AdminController {
         return new ResponseEntity<>("Okay",HttpStatus.OK);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @Secured("ADMIN")
     @GetMapping("/getUserById/{id}")
     public ResponseEntity<UserDTO> getAUser(@PathVariable Long id)
     {

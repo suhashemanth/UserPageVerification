@@ -19,7 +19,7 @@ import java.time.LocalDate;
 
 @EnableWebSecurity
 @Configuration
-@EnableMethodSecurity
+@EnableMethodSecurity(prePostEnabled = true,securedEnabled = true,jsr250Enabled = true)
 public class UserSecurityConfiguration {
 
     @Bean
